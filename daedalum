@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
-for line in $(cat /dev/stdin); do
+
+while read line; do
     clear
     ponysay "$line"
-    sleep 1s
-done
+    sleep 3s
+done < /dev/stdin
