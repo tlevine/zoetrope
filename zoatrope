@@ -1,9 +1,8 @@
 #!/bin/sh
 
-input="$1"
-output="$2"
+output="$1"
+bpm=140
+fps=$(python -c "print($bpm/60.0)")
 
 # This only works for pngs
-# mencoder mf://*.png -mf fps=1 -o output.avi -ovc xvid -xvidencopts bitrate=1600
-
-mencoder "mf://${input}" -mf fps="${fps}" -o "${output}" -ovc xvid -xvidencopts bitrate=1600
+mencoder mf://*.png -mf fps="${fps}" -o "${output}" -ovc xvid -xvidencopts bitrate=1600
