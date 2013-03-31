@@ -1,8 +1,18 @@
 #!/bin/sh
 
-output="$1"
-bpm=140
-fps=$(python -c "print($bpm/60.0)")
+flag="$1"
+value="$2"
+output="$3"
 
-# This only works for pngs
-mencoder mf://*.png -mf fps="${fps}" -o "${output}" -ovc xvid -xvidencopts bitrate=1600
+if test "$flag" = -bpm; then
+  bpm=$(echo "$value" | sed s/[^0-9.]//g)
+  fps=$(python -c "print($bpm/60.0)")
+  
+  # This only works for pngs
+  mencoder mf://*.png -mf fps="${fps}" -o "${output}" \
+    -ovc xvid -xvidencopts bitrate=1600
+elif test "$flag" = -audio; then
+  echo Audio has not yet been implemented.
+else
+  echo You must specify one and only one of -bpm and -audio.
+fi
