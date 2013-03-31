@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+for line in $(cat /dev/stdin); do
+    clear
+    ponysay "$line"
+    sleep 1s
+done
