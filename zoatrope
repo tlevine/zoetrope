@@ -11,8 +11,13 @@ if test "$flag" = -bpm; then
   # This only works for pngs
   mencoder mf://*.png -mf fps="${fps}" -o "${output}" \
     -ovc xvid -xvidencopts bitrate=1600
+
 elif test "$flag" = -audio; then
-  echo Audio has not yet been implemented.
+  audio_seconds=$(mplayer -frames 0 -identify ~/output.avi 2>/dev/null|grep ^ID_LENGTH|cut -d= -f2)
+  video_frames=$(ls *.png|wc -l)
+  fps=$(python -c "print(1.0*$video_frames/$audio_seconds)")
+  echo $fps
+
 else
   echo You must specify one and only one of -bpm and -audio.
 fi
