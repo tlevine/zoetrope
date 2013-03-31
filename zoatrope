@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# ffmpeg -i "%d.jpeg" -q:a 0 -r $fps outmovie.mp4
+mencoder $images -mf fps=10:type=png -ovc x264 -x264encopts bitrate=1200:threads=2 -o outputfile.mkv
+mencoder mf://*.png -mf fps=1 -o output.avi -ovc xvid -xvidencopts bitrate=1600
+

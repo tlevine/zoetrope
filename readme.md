@@ -2,4 +2,5 @@ Zoetrope
 =====
 Produce video from a bunch of frames.
 
-    zoatrope [in files] [out file]
+    zoatrope [-bpm 100] [in files] [out file]
+
